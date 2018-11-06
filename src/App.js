@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import { brokenLinkCounter } from './api';
+const fs = require('fs');
+const http = require('http');
 
 class App extends Component {
 	state = {
@@ -22,7 +25,7 @@ class App extends Component {
 					<button>Submit URL</button>
 				</form>
 				{this.state.download && (
-					<a href="example.txt" download>
+					<a href="html.txt" download>
 						Start Automatic Download
 					</a>
 				)}
@@ -34,8 +37,22 @@ class App extends Component {
 			url
 		});
 	};
+	_downloadTxtFile = string => {
+		var element = document.createElement('a');
+		var file = new Blob([string], { type: 'text/plain' });
+		element.href = URL.createObjectURL(file);
+		element.download = 'myFile.txt';
+		element.click();
+	};
 	handleSubmit = event => {
 		event.preventDefault();
+		brokenLinkCounter(this.state.url, (err, brokenlinks) => {
+			//console.log(brokenlinks);
+			this._downloadTxtFile(JSON.stringify(brokenlinks));
+			// fs.writeFile('html.txt', JSON.stringify(brokenlinks), err => {
+			// 	if (err) throw err;
+			// });
+		});
 		this.setState({
 			download: true
 		});
