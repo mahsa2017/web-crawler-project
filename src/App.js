@@ -3,14 +3,16 @@ import './App.css';
 
 class App extends Component {
 	state = {
-		download: false
+		download: false,
+		url: ''
 	};
+
 	render() {
 		return (
 			<div className="App">
-				<form onSubmit={this.handleSubmit}>
-					<p>Please select one of the following links</p>
-					<select>
+				<form onSubmit={event => this.handleSubmit(event)}>
+					<select onChange={event => this.handleChange(event.target.value)}>
+						<option value="">''Please choose an option--</option>
 						<option value="https://broken-links-api.herokuapp.com/">https://broken-links-api.herokuapp.com/</option>
 						<option value="https://web-crawler-test1.herokuapp.com/">https://web-crawler-test1.herokuapp.com/</option>
 						<option value="https://web-crawler-test2.herokuapp.com/">https://web-crawler-test2.herokuapp.com/</option>
@@ -27,8 +29,14 @@ class App extends Component {
 			</div>
 		);
 	}
+	handleChange = url => {
+		this.setState({
+			url
+		});
+	};
 	handleSubmit = event => {
 		event.preventDefault();
+		console.log(this.state.url);
 		this.setState({
 			download: true
 		});
