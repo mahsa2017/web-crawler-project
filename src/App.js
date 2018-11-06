@@ -13,11 +13,11 @@ class App extends Component {
 				<form onSubmit={event => this.handleSubmit(event)}>
 					<select onChange={event => this.handleChange(event.target.value)}>
 						<option value="">''Please choose an option--</option>
-						<option value="https://broken-links-api.herokuapp.com/">https://broken-links-api.herokuapp.com/</option>
-						<option value="https://web-crawler-test1.herokuapp.com/">https://web-crawler-test1.herokuapp.com/</option>
-						<option value="https://web-crawler-test2.herokuapp.com/">https://web-crawler-test2.herokuapp.com/</option>
-						<option value="https://random-static-linky-site-01.herokuapp.com/">https://random-static-linky-site-01.herokuapp.com/</option>
-						<option value="https://random-static-linky-site-02.herokuapp.com/">https://random-static-linky-site-02.herokuapp.com/</option>
+						<option value="broken-links-api.herokuapp.com">https://broken-links-api.herokuapp.com/</option>
+						<option value="web-crawler-test1.herokuapp.com">https://web-crawler-test1.herokuapp.com/</option>
+						<option value="web-crawler-test2.herokuapp.com">https://web-crawler-test2.herokuapp.com/</option>
+						<option value="random-static-linky-site-01.herokuapp.com">https://random-static-linky-site-01.herokuapp.com/</option>
+						<option value="random-static-linky-site-02.herokuapp.com">https://random-static-linky-site-02.herokuapp.com/</option>
 					</select>
 					<button>Submit URL</button>
 				</form>
@@ -36,7 +36,6 @@ class App extends Component {
 	};
 	handleSubmit = event => {
 		event.preventDefault();
-		console.log(this.state.url);
 		this.setState({
 			download: true
 		});
